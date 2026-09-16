@@ -1,0 +1,15 @@
+[project]
+name = "party-billy-divisor-backend"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "alembic>=1.20.0",
+    "alembic-utils>=0.8.8",
+    "asyncpg>=0.31.0",
+    "fastapi>=0.141.1",
+    "pydantic-settings>=2.15.0",
+    "sqlalchemy>=2.0.54",
+    "uvicorn>=0.53.0",
+]
