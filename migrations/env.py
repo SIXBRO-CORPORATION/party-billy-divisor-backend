@@ -5,6 +5,7 @@ from logging.config import fileConfig
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 from persistence.model.abstract_entity import Base
+from persistence.model import PG_ENTITIES
 
 from alembic import context
 from alembic_utils.replaceable_entity import register_entities

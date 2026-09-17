@@ -1,0 +1,15 @@
+from abc import abstractmethod
+from typing import Optional
+
+from core.persistence.commons.base_repository_port import BaseRepositoryPort
+from domain.user.user import User
+
+
+class UserRepositoryPort(BaseRepositoryPort[User]):
+    @abstractmethod
+    async def find_by_email(self, email: str) -> Optional[User]:
+        pass
+
+    @abstractmethod
+    async def exists_by_email(self, email: str) -> bool:
+        pass

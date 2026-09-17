@@ -1,0 +1,11 @@
+from sqlalchemy import Column, String
+
+from persistence.model.abstract_entity import AbstractEntity
+
+
+class UserEntity(AbstractEntity):
+    __tablename__ = "users"
+
+    name = Column(String(255), nullable=False)
+    email = Column(String(255), nullable=False, unique=True, index=True)
+    password_hash = Column(String(255), nullable=False)

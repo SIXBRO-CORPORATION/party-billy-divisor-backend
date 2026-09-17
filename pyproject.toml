@@ -8,8 +8,45 @@ dependencies = [
     "alembic>=1.20.0",
     "alembic-utils>=0.8.8",
     "asyncpg>=0.31.0",
+    "bcrypt>=4.2.0",
+    "email-validator>=2.2.0",
     "fastapi>=0.141.1",
+    "psycopg[binary]>=3.2.0",
     "pydantic-settings>=2.15.0",
+    "python-dotenv>=1.0.1",
+    "python-jose[cryptography]>=3.3.0",
     "sqlalchemy>=2.0.54",
+    "taskipy>=1.14.1",
     "uvicorn>=0.53.0",
 ]
+
+[dependency-groups]
+dev = [
+    "aiosqlite>=0.20.0",
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.24.0",
+    "taskipy>=1.14.1",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.taskipy.tasks]
+
+install = "uv venv && uv pip install . && uv pip install --group dev"
+
+run = "uv run uvicorn web.main:app --reload"
+
+test = "uv run pytest"
+test_unit = "uv run pytest tests/unit"
+test_integration = "uv run pytest tests/integration"
+test_e2e = "uv run pytest tests/e2e"
+
+coverage = "uv run pytest --cov=core --cov=domain --cov=business --cov=security --cov=persistence --cov-report=term-missing"
+
+lint = "uv run ruff check ."
+
+check = "task lint && task test"
+
+clean = "rm -rf .venv .pytest_cache .ruff_cache dist build *.egg-info"
+

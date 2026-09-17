@@ -8,6 +8,7 @@ from starlette.middleware.cors import CORSMiddleware
 from persistence.database import close_db
 from security.config import settings
 from web.commons.exception_handler import register_exception_handler
+from web.controllers.auth_controller import router as auth_router
 
 
 logging.basicConfig(
@@ -47,6 +48,8 @@ app.add_middleware(
 )
 
 register_exception_handler(app)
+
+app.include_router(auth_router)
 
 
 async def root():

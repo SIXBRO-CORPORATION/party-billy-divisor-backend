@@ -9,28 +9,16 @@ class Settings(BaseSettings):
     database_url: str
     database_url_sync: str
 
-    # SUAP OAuth2
-    suap_client_id: str
-    suap_client_secret: str
-    suap_redirect_uri: str
-    suap_authorization_url: str = "https://suap.ifrn.edu.br/o/authorize/"
-    suap_token_url: str = "https://suap.ifrn.edu.br/o/token/"
-    suap_user_info_url: str = "https://suap.ifrn.edu.br/api/rh/meus-dados/"
-
     # JWT
     jwt_secret_key: str
     jwt_algorithm: str = "HS256"
-    jwt_access_token_expire_minutes: int = 30
+    jwt_access_token_expire_minutes: int = 60 * 24  # 1 dia
 
     # Frontend
     frontend_url: str = "http://localhost:5173"
 
-    # Mobile
-    mobile_deep_link_scheme: str
-    mobile_deep_link_path: str
-
     # App
-    app_name: str = "Intercurso API"
+    app_name: str = "Party Billy Divisor API"
     debug: bool = False
 
 

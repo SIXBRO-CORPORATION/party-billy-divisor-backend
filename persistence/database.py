@@ -13,6 +13,7 @@ from sqlalchemy.ext.asyncio import (
 from sqlalchemy.pool import NullPool
 
 from persistence.model.abstract_entity import Base
+import persistence.model  # noqa
 
 load_dotenv()
 
