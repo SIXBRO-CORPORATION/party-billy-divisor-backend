@@ -79,7 +79,7 @@ class BillSplitCalculator:
                 name = raw_name.strip()
 
                 if not name:
-                    raise BusinessException("Nome de participante não pode ser vazio.")
+                    raise BusinessException("Nome de participante não pode ser vazio")
 
                 if name not in participants_by_name:
                     participants_by_name[name] = Participant(
