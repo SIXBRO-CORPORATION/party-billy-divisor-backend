@@ -8,5 +8,9 @@ from domain.bill.bill import Bill
 
 class BillRepositoryPort(BaseRepositoryPort[Bill]):
     @abstractmethod
+    async def create(self, bill: Bill) -> Bill:
+        pass
+
+    @abstractmethod
     async def find_by_owner(self, owner_id: UUID) -> List[Bill]:
         pass

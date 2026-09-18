@@ -5,12 +5,36 @@ from fastapi.exceptions import RequestValidationError
 from starlette.responses import JSONResponse
 
 from domain.exceptions.business_exception import BusinessException
+from domain.exceptions.forbidden_exception import ForbiddenException
+from domain.exceptions.not_found_exception import NotFoundException
 from web.commons.api_response import ApiResponse
 
 logger = logging.getLogger(__name__)
 
 
 def register_exception_handler(app: FastAPI) -> None:
+    @app.exception_handler(NotFoundException)
+    async def not_found_exception_handler(
+        request: Request, exc: NotFoundException
+    ) -> JSONResponse:
+        response = ApiResponse.failure(error=str(exc), code="NOT_FOUND")
+
+        return JSONResponse(
+            status_code=status.HTTP_404_NOT_FOUND,
+            content=response.model_dump(mode="json"),
+        )
+
+    @app.exception_handler(ForbiddenException)
+    async def forbidden_exception_handler(
+        request: Request, exc: ForbiddenException
+    ) -> JSONResponse:
+        response = ApiResponse.failure(error=str(exc), code="FORBIDDEN")
+
+        return JSONResponse(
+            status_code=status.HTTP_403_FORBIDDEN,
+            content=response.model_dump(mode="json"),
+        )
+
     @app.exception_handler(BusinessException)
     async def business_exception_handler(
         request: Request, exc: BusinessException

@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from decimal import Decimal
 from typing import Optional
 from uuid import UUID
 
@@ -10,3 +11,5 @@ class Participant(AbstractDomain):
 
     bill_id: Optional[UUID] = None
     name: str = None
+    amount_owed: Decimal = Decimal("0")
+    paid: bool = False

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, ForeignKey, String
+from sqlalchemy import Boolean, Column, ForeignKey, Numeric, String
 from sqlalchemy.orm import relationship
 
 from persistence.model.abstract_entity import AbstractEntity
@@ -9,5 +9,7 @@ class ParticipantEntity(AbstractEntity):
 
     bill_id = Column(ForeignKey("bills.id"), nullable=False, index=True)
     name = Column(String(255), nullable=False)
+    amount_owed = Column(Numeric(10, 2), nullable=False, default=0)
+    paid = Column(Boolean, nullable=False, default=False)
 
     bill = relationship("BillEntity", back_populates="participants")

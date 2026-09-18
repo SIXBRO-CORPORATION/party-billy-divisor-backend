@@ -9,6 +9,7 @@ from persistence.database import close_db
 from security.config import settings
 from web.commons.exception_handler import register_exception_handler
 from web.controllers.auth_controller import router as auth_router
+from web.controllers.bill_controller import router as bill_router
 
 
 logging.basicConfig(
@@ -50,6 +51,7 @@ app.add_middleware(
 register_exception_handler(app)
 
 app.include_router(auth_router)
+app.include_router(bill_router)
 
 
 async def root():
